@@ -7,10 +7,14 @@
   <body>
     <div class="container">
       <div class="header">
-        <h4>Welcome, {{user['family_name']}}</h4>
-        <div class="img-box">
-          <img class="img" src="{{user['picture']}}" />
-        </div>
+        {% if user %}
+          <h4 >logout, {{ user.get('family_name', 'User') }}</h4>
+          <div class="img-box">
+            <img class="img" src="{{ user.get('picture', '') }}" />
+          </div>
+        {% else %}
+          <h4>Logout</h4>
+        {% endif %}
       </div>
       <a href="/logout" class="google-btn">
         <div class="google-icon"></div>

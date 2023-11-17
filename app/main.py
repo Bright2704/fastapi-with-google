@@ -68,7 +68,24 @@ async def auth(request: Request):
     user = token.get('userinfo')
     if user:
         request.session['user'] = dict(user)
-    return RedirectResponse('welcome')
+        print("Access Token:", token)
+        return RedirectResponse('/welcome')
+    
+    return RedirectResponse('/')
+
+# @app.get('/auth')
+# async def auth(request: Request):
+#     try:
+#         token = await oauth.google.authorize_access_token(request)
+#     except OAuthError as e:
+#         return templates.TemplateResponse(
+#             name='error.html',
+#             context={'request': request, 'error': e.error}
+#         )
+#     user = token.get('userinfo')
+#     if user:
+#         request.session['user'] = dict(user)
+#     return RedirectResponse('welcome')
 
 
 @app.get('/logout')
